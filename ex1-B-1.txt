@@ -1,0 +1,46 @@
+Script started on 2019-09-27 05:48:25+0900
+]0;ryota@DESKTOP-PAOMUQO: /mnt/c/Users/user/Documents/c[01;32mryota@DESKTOP-PAOMUQO[00m:[01;34m/mnt/c/Users/user/Documents/c[00m$ cat -W[K[Kex1-B-1.c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void){
+    int num,n;
+    FILE *fp;
+    fp = fopen("test.bmp","wb");
+    if(fp==NULL){
+        printf("ファイルオープン失敗\n");
+        exit(1);
+    }
+
+    printf("ファイルをオープンしました\n");
+    printf("何バイト書き出しますか:");
+    scanf("%d",&num);
+    printf("\n");
+    printf("0以上255以下の値を%d個入力して下さい.\n",num);
+    for (int i = 0; i < num; i++){
+        printf("No.%d:",i+1);
+        scanf("%d",&n);
+        fprintf(fp,"%d\n",n);
+    }
+
+    fclose(fp);
+    printf("ファイルをクローズしました\n");
+    return 0;
+}]0;ryota@DESKTOP-PAOMUQO: /mnt/c/Users/user/Documents/c[01;32mryota@DESKTOP-PAOMUQO[00m:[01;34m/mnt/c/Users/user/Documents/c[00m$ gcc =[K-Wall -o ex1-B-1 ex1-B-1.c
+]0;ryota@DESKTOP-PAOMUQO: /mnt/c/Users/user/Documents/c[01;32mryota@DESKTOP-PAOMUQO[00m:[01;34m/mnt/c/Users/user/Documents/c[00m$ ./ex1-B-1.oyu[K[Kut
+bash: ./ex1-B-1.out: No such file or directory
+]0;ryota@DESKTOP-PAOMUQO: /mnt/c/Users/user/Documents/c[01;32mryota@DESKTOP-PAOMUQO[00m:[01;34m/mnt/c/Users/user/Documents/c[00m$ ./ex1-B-1
+ファイルをオープンしました
+何バイト書き出しますか:5
+
+0以上255以下の値を5個入力して下さい.
+No.1:50
+No.2:100
+No.3:150
+No.4:200
+No.5:250
+ファイルをクローズしました
+]0;ryota@DESKTOP-PAOMUQO: /mnt/c/Users/user/Documents/c[01;32mryota@DESKTOP-PAOMUQO[00m:[01;34m/mnt/c/Users/user/Documents/c[00m$ exit
+exit
+
+Script done on 2019-09-27 05:50:11+0900

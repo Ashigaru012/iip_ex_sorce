@@ -1,0 +1,77 @@
+Script started on 2019-09-27 05:51:37+0900
+]0;ryota@DESKTOP-PAOMUQO: /mnt/c/Users/user/Documents/c[01;32mryota@DESKTOP-PAOMUQO[00m:[01;34m/mnt/c/Users/user/Documents/c[00m$ cat ex1-B-2.c
+#include <stdio.h>
+#include <stdlib.h>
+
+#define LineMax 100
+
+int main() {
+FILE * fp;
+unsigned char Lines[LineMax][256];
+unsigned int i;
+int cnt = 0;
+
+fp = fopen("test.bmp","r");
+if( fp == NULL ){
+printf( "ファイルオープンエラー\n" );
+exit(1);
+}
+printf("読み込み用ファイルをオープンしました.\n");
+
+for(i=0; i<LineMax && fgets( Lines[i] , sizeof(Lines[i]) , fp ) != NULL;i++){
+    cnt += 1;
+}
+printf("%d個のデータを読み込み、配列に格納しました.\n",cnt);
+fclose( fp );
+printf("読み込み用ファイルをクローズしました.\n\n");
+
+printf("配列の内容を表示します\n");
+for (i = 0; i < cnt; i++){
+    printf("ary[%d]=%s",i,Lines[i]);
+}
+printf("\n");
+
+fp = fopen("testcp.bmp","w");
+if( fp == NULL ){
+printf( "ファイルオープンエラー\n" );
+exit(1);
+}
+printf("書き込み用ファイルをオープンしました.\n");
+for(i = 0; i < cnt; i++){
+    fprintf( fp,"%s" , Lines[i] );
+}
+
+printf("配列に格納されてた%d個のデータを書き出しました.\n",cnt);
+fclose(fp);
+printf("書き出し用ファイルをクローズしました.\n");
+
+
+return 0;
+}]0;ryota@DESKTOP-PAOMUQO: /mnt/c/Users/user/Documents/c[01;32mryota@DESKTOP-PAOMUQO[00m:[01;34m/mnt/c/Users/user/Documents/c[00m$ gcc -Wall -0 [K[Ko ex1-B-2 ex1-B-2.c
+[01m[Kex1-B-2.c:[m[K In function ‘[01m[Kmain[m[K’:
+[01m[Kex1-B-2.c:19:30:[m[K [01;35m[Kwarning: [m[Kpointer targets in passing argument 1 of ‘[01m[Kfgets[m[K’ differ in signedness [[01;35m[K-Wpointer-sign[m[K]
+ for(i=0; i<LineMax && fgets( [01;35m[KLines[m[K[i] , sizeof(Lines[i]) , fp ) != NULL;i++){
+                              [01;35m[K^~~~~[m[K
+In file included from [01m[Kex1-B-2.c:1:0[m[K:
+[01m[K/usr/include/stdio.h:564:14:[m[K [01;36m[Knote: [m[Kexpected ‘[01m[Kchar * restrict[m[K’ but argument is of type ‘[01m[Kunsigned char *[m[K’
+ extern char *[01;36m[Kfgets[m[K (char *__restrict __s, int __n, FILE *__restrict __stream)
+              [01;36m[K^~~~~[m[K
+]0;ryota@DESKTOP-PAOMUQO: /mnt/c/Users/user/Documents/c[01;32mryota@DESKTOP-PAOMUQO[00m:[01;34m/mnt/c/Users/user/Documents/c[00m$ ./ex1-B-2
+読み込み用ファイルをオープンしました.
+5個のデータを読み込み、配列に格納しました.
+読み込み用ファイルをクローズしました.
+
+配列の内容を表示します
+ary[0]=50
+ary[1]=100
+ary[2]=150
+ary[3]=200
+ary[4]=250
+
+書き込み用ファイルをオープンしました.
+配列に格納されてた5個のデータを書き出しました.
+書き出し用ファイルをクローズしました.
+]0;ryota@DESKTOP-PAOMUQO: /mnt/c/Users/user/Documents/c[01;32mryota@DESKTOP-PAOMUQO[00m:[01;34m/mnt/c/Users/user/Documents/c[00m$ exit
+exit
+
+Script done on 2019-09-27 05:52:45+0900
